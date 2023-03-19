@@ -1,7 +1,7 @@
 package id.choniyuazwan.onion.domain.service;
 
 import id.choniyuazwan.onion.domain.model.User;
-import org.springframework.stereotype.Service;
+import id.choniyuazwan.onion.domain.service.repository.UserRepository;
 
 public class UserService {
   private final UserRepository repository;
@@ -10,7 +10,7 @@ public class UserService {
     this.repository = repository;
   }
 
-  public void add(User user) {
-    repository.add(user);
+  public User getUser(String username) {
+    return repository.getUser(username);
   }
 }
