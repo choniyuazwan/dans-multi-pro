@@ -21,7 +21,7 @@ public class PositionManager {
     this.positionService = positionService;
   }
   
-  public List<PositionDto> getListPosition() throws NoSuchAlgorithmException, KeyManagementException {
+  public Map<String, List<PositionDto>> getListPosition() throws NoSuchAlgorithmException, KeyManagementException {
     List<PositionDto> positionList = positionService.getListPosition();
     
     Map<String, List<PositionDto>> locationMap = new HashMap<>();
@@ -33,15 +33,7 @@ public class PositionManager {
       locationMap.get(location).add(data);
     }
     
-    for (String location : locationMap.keySet()) {
-      System.out.println("Location: " + location);
-      List<PositionDto> locationDataList = locationMap.get(location);
-      for (PositionDto data : locationDataList) {
-        System.out.println("\t" + data.getId() + " - " + data.getType());
-      }
-    }
-    
-    return positionList;
+    return locationMap;
   }
 
   public PositionDto getOnePosition(String id) {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -26,10 +27,10 @@ public class PositionRest {
   private PositionManager positionManager;
 
   @GetMapping(value = "/positions")
-  public ResponseEntity<CommonResponse<List<PositionDto>>> getListPosition() {
+  public ResponseEntity<CommonResponse<Map<String, List<PositionDto>>>> getListPosition() {
     try {
-      CommonResponse<List<PositionDto>> response = new CommonResponse<>();
-      List<PositionDto> positionListDto = positionManager.getListPosition();
+      CommonResponse<Map<String, List<PositionDto>>> response = new CommonResponse<>();
+      Map<String, List<PositionDto>> positionListDto = positionManager.getListPosition();
       response.setData(positionListDto);
       return ResponseEntity.ok(response);
       
